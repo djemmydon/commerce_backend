@@ -18,9 +18,11 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json({
-  limit: '50mb'
-}));
+app.use(
+  express.json({
+    limit: "50mb",
+  })
+);
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
@@ -34,7 +36,7 @@ app.use(
 );
 app.use(
   cors({
-    origin:[ "http://localhost:3000", "https://resturant-app-three.vercel.app"],
+    origin: ["http://localhost:3000", "https://resturant-app-three.vercel.app", "https://market4all.vercel.app/"],
   })
 );
 
