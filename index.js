@@ -36,7 +36,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://resturant-app-three.vercel.app", "https://market4all.vercel.app/"],
+    origin: ["http://localhost:3000", "https://resturant-app-three.vercel.app", "https://market4all.vercel.app"],
   })
 );
 
