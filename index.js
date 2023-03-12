@@ -36,15 +36,7 @@ app.use(
     parameterLimit: 100000,
   })
 );
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://resturant-app-three.vercel.app",
-      "https://market4all.vercel.app",
-    ],
-  })
-);
+app.use(cors());
 
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
@@ -65,7 +57,7 @@ const upload = multer({ storage });
 // Route with file
 
 //Routes
-app.use("/api/v1/auth", authRoutes)
+app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/order", orderRoutes);
 
