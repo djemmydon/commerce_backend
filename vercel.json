@@ -6,7 +6,7 @@
       "use": "@vercel/python"
     }
   ],
-  "rewrites": [{ "src": "/(.*)", "dest": "/" }],
+  "rewrites": [{ "dest": "/" }],
   "headers": [
     {
       "source": "/(.*)",
