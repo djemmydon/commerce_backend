@@ -6,15 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [{ "src": "/(.*)", "dest": "/" }],
-  "headers": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
-    },
-    {
-      "source": "/commerce-backend-rho.vercel.app/(.*)",
-      "headers": [{ "key": "Access-Control-Allow-Origin", "value": "*" }]
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
