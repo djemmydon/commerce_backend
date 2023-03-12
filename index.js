@@ -36,13 +36,16 @@ app.use(
     parameterLimit: 100000,
   })
 );
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "*");
-  res.setHeader("Access-Control-Allow-Headers", "*");
-});
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://resturant-app-three.vercel.app",
+      "https://market4all.vercel.app",
+      "https://commerce-backend-rho.vercel.app",
+    ],
+  })
+);
 
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
