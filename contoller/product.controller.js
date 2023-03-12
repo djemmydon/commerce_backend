@@ -1,4 +1,3 @@
-
 import productModel from "../models/product.js";
 import { v2 as cloudinary } from "cloudinary";
 

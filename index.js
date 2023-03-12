@@ -8,8 +8,10 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-// import { register } from "./contoller/auth.js";
+
 import productRoutes from "./routes/product.routes.js";
+import orderRoutes from "./routes/product.routes.js";
+import authRoutes from "./routes/auth.js";
 
 // config
 const __filename = fileURLToPath(import.meta.url);
@@ -36,7 +38,11 @@ app.use(
 );
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://resturant-app-three.vercel.app", "https://market4all.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "https://resturant-app-three.vercel.app",
+      "https://market4all.vercel.app",
+    ],
   })
 );
 
@@ -59,8 +65,9 @@ const upload = multer({ storage });
 // Route with file
 
 //Routes
-// app.use("/api/v1/auth", authRouter)
+app.use("/api/v1/auth", authRoutes)
 app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/order", orderRoutes);
 
 // Mongoose setup
 
