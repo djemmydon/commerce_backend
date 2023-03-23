@@ -36,7 +36,7 @@ const getAllProduct = async (req, res) => {
 
     const resp = {
       error: false,
-      property,
+      products,
       page: page + 1,
       limit,
     };
