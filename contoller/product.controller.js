@@ -28,9 +28,9 @@ const getAllProduct = async (req, res) => {
     //   sortBy[sort[0]] = "asc";
     // }
 
-    const property = await productModel
+    const products = await productModel
       .find({ title: { $regex: search, $options: "i" } })
-      
+
       .skip(page * limit)
       .limit(limit);
 
