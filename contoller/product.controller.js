@@ -13,10 +13,35 @@ cloudinary.config({
 
 const getAllProduct = async (req, res) => {
   try {
-    const property = await productModel.find({}).limit(req.query._end);
+    const page = parseInt(req.query.page) - 1 || 0;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+    const sort = req.query.sort || "price";
 
-    console.log(property);
-    res.status(200).json(property);
+    // req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+
+    // let sortBy = {};
+
+    // if (sort[1]) {
+    //   sortBy[sort[0]] = sort[1];
+    // } else {
+    //   sortBy[sort[0]] = "asc";
+    // }
+
+    const property = await productModel
+      .find({ title: { $regex: search, $options: "i" } })
+      
+      .skip(page * limit)
+      .limit(limit);
+
+    const resp = {
+      error: false,
+      property,
+      page: page + 1,
+      limit,
+    };
+
+    res.status(200).json(resp);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -31,6 +56,7 @@ const getProductDetails = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 const createProduct = async (req, res) => {
   const { title, price, description, color, image } = req.body;
 
@@ -55,4 +81,18 @@ const createProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {};
 
-export { updateProduct, getAllProduct, getProductDetails, createProduct };
+const searchProduct = async (req, res) => {
+  let result = await productModel.find({
+    $or: [{ title: { $reqex: req.params._id } }],
+  });
+
+  res.send(result);
+};
+
+export {
+  updateProduct,
+  getAllProduct,
+  getProductDetails,
+  createProduct,
+  searchProduct,
+};
