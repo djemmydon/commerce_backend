@@ -43,6 +43,7 @@ app.use(
       "https://resturant-app-three.vercel.app",
       "https://market4all.vercel.app",
       "https://commerce-backend-rho.vercel.app",
+      "http://localhost:5173",
     ],
   })
 );

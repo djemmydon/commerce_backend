@@ -4,13 +4,7 @@ import User from "../models/User.js";
 
 export const register = async (req, res) => {
   try {
-    const {
-      fullName,
-      phone,
-      email,
-      password,
-      image
-    } = req.body;
+    const { fullName, phone, email, password, image } = req.body;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -46,6 +40,16 @@ export const login = async (req, res) => {
     delete user.password;
 
     res.status(200).json({ token, user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    const users = await User.find({}).limit(req.query.end);
+
+    res.status(500).json(users);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
