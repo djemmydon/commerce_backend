@@ -27,6 +27,9 @@ const UserSChema = new mongoose.Schema(
       required: true,
       min: 5,
     },
+    isAdmin: {
+      type: Boolean,
+    },
     allOrder: [
       {
         type: mongoose.Schema.ObjectId,
